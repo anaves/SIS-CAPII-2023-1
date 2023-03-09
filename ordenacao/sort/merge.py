@@ -1,10 +1,10 @@
 def intercala(lista, inicio, meio, fim):
     i = inicio
-    j = meio
+    j = meio+1
 
     aux = []
     print('i\tj')
-    while i<meio and j<fim:
+    while i<=meio and j<=fim:
         print(f'{i}\t{j}')
         if lista[i]<lista[j]:
             aux.append(lista[i])
@@ -14,10 +14,10 @@ def intercala(lista, inicio, meio, fim):
             j+=1
     # fim while -> i < meio ou j < fim
 
-    while i<meio:
+    while i <= meio:
         aux.append(lista[i])
         i+=1
-    while j<fim:
+    while j <= fim:
         aux.append(lista[j])
         j+=1
     
