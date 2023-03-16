@@ -1,7 +1,9 @@
+
+qtd=0
 def intercala(lista, inicio, meio, fim):
     i = inicio
     j = meio+1
-
+    
     aux = []
     
     while i<=meio and j<=fim:
@@ -29,6 +31,8 @@ def intercala(lista, inicio, meio, fim):
     #print(lista)
     
 def merge_sort(inicio, fim, lista):
+    global qtd
+    qtd+=1
     if inicio != fim:
         meio = (inicio+fim)//2
         merge_sort(inicio, meio, lista)
@@ -36,10 +40,18 @@ def merge_sort(inicio, fim, lista):
         intercala(lista, inicio, meio, fim)
     
 
-L = [2,3,4,10,5,15,18,20,12,13]
-print(L)
-merge_sort(0,9,L)
-print(L)
+L = []
+n=10**4
+
+import random
+for i in range(n):
+    L.append(random.randint(0,10000))
+
+#print(L)
+merge_sort(0,len(L)-1,L)
+#print(L)
+print("ordenada")
+print(qtd)
 
 
 
