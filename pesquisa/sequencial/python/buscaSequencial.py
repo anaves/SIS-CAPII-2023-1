@@ -1,4 +1,4 @@
-lista = ["A","C","F", "B", "C"]
+lista = ["A","C","F", "B", "C", "I"]
 
 
 def sequencial(vetor,chave):
@@ -8,7 +8,5 @@ def sequencial(vetor,chave):
             return i
     return -1
 
-def sequencial_todos(vetor, chave):
-   # vamos implementar uma solucao!
-   pass
-print(sequencial(lista,"C"))
+
+print(sequencial(lista,"J"))
