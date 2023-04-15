@@ -1,2 +1,4 @@
 Exercicios
-Refaça as funções de busca sequencial e busca binária assumindo que a lista possui chaves que podem ocorrer múltiplas vezes na lista. Neste caso, você deve retornar uma lista com todas as posições onde a chave foi encontrada. Se a chave não for encontrada na lista, retornar uma lista vazia.
+1- Refaça as funções de busca sequencial e busca binária assumindo que a lista possui chaves que podem ocorrer múltiplas vezes na lista. Neste caso, você deve retornar uma lista com todas as posições onde a chave foi encontrada. Se a chave não for encontrada na lista, retornar uma lista vazia.
+
+2. Dada uma lista ordenada de n números inteiros e distintos e dois outros inteiros X e Y, retornar o número de chaves da lista que são maiores ou iguais a X e menores ou iguais a Y.
