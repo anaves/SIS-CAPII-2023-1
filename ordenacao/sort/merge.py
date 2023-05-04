@@ -37,18 +37,19 @@ def _merge_sort(inicio, fim, lista):
     if inicio != fim:
         meio = (inicio+fim)//2
         _merge_sort(inicio, meio, lista)
+        print(lista)
         _merge_sort(meio+1,fim, lista)
         intercala(lista, inicio, meio, fim)
 
 def merge_sort(L):
     _merge_sort(0,len(L)-1,L)    
 
-L = []
-n=10**6
+L = [10,9,8,7,6,5,4,3,2,1]
+# n=10**6
 
-import random
-for i in range(n):
-    L.append(random.randint(0,600000))
+# import random
+# for i in range(n):
+#     L.append(random.randint(0,600000))
 
 merge_sort(L)
 
