@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ConectaBD {
@@ -15,8 +16,23 @@ public class ConectaBD {
             conexao = DriverManager.getConnection(url, user, pwd);
             System.out.println("Conexao realizada");
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println(e.getMessage());
         }
+    }
+
+    public void inserir(Pessoa p) {
+        String sql = "INSERT INTO pessoa (nome,email) VALUES (?,?)";
+        try {
+            PreparedStatement pst = conexao.prepareStatement(sql);
+            pst.setString(1, p.nome);
+            pst.setString(2, p.email);
+            pst.execute();
+            System.out.println("inserido");
+        } catch (SQLException e) {
+           System.out.println(e.getMessage());
+        }
+
+        
     }
 }
