@@ -2,6 +2,7 @@ package model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import model.entity.Pessoa;
@@ -31,18 +32,25 @@ public class PessoaDAO {
     public List<Pessoa> consultarTodos(){
         ConectaBD con = new ConectaBD();
         String sql = "SELECT * FROM pessoa";
+        List<Pessoa> lista = new LinkedList<Pessoa>();
         try {
             PreparedStatement pst = con.getConexao().prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
+
             while (rs.next()){
-                System.out.println(rs.getInt("id"));
-                System.out.println(rs.getString("nome"));
+                Pessoa pessoa = new Pessoa(); 
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                pessoa.setId(id);
+                pessoa.setNome(nome);
+                pessoa.setEmail(email);
+                lista.add(pessoa);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-        return null;
+        return lista;
     }
 
 }
