@@ -24,8 +24,9 @@ public class PessoaDAO {
         }
     }
 
-    public Pessoa consultar(){
-    /// SELECT
+    public Pessoa consultar(int varid){
+        // IMPLEMENTAR PARA A PROXIMA AULA!!! - 24/05/2023 
+        /// SELECT
         return null;
     }
 
