@@ -17,7 +17,10 @@ public class App {
         System.out.println("MENU");
         System.out.println("1- Inserir");
         System.out.println("2- Listar todos");
-        System.out.println("3- Sair");
+        System.out.println("3- Listar por id");
+        System.out.println("4- Excluir por id");
+        System.out.println("5- Atualizar");
+        System.out.println("6- Sair");
         System.out.print("Digite: ");
         return teclado.nextInt();
     }
@@ -50,6 +53,17 @@ public class App {
         }
     }
     
+    public static void metodoExcluir() {
+        String tmp = leString("Digite id para excluir");
+        int id = Integer.parseInt(tmp); // converte pra int
+        PessoaDAO dao = new PessoaDAO();
+        if (dao.excluir(id)){
+            JOptionPane.showMessageDialog(null, "Registro " +id + " exluido");
+        }else{
+            JOptionPane.showMessageDialog(null, "Registro " +id + " nao existe");
+        }
+    }
+    
     public static void main(String[] args) {
         int op;
         do{
@@ -62,21 +76,38 @@ public class App {
                     metodoConsultarTodos();
                     break;
                 case 3:
+                    String idStr = leString("Digite id");
+                    // converter de String para int
+                    int id = Integer.parseInt(idStr);
+                    PessoaDAO dao = new PessoaDAO();
+                    Pessoa pess = dao.consultar(id);
+                    String saida;
+                    if (pess != null){
+                        saida = "id\tnome\temail\n";
+                        saida += pess.getId()+"\t";
+                        saida = saida + pess.getNome()+"\t";
+                        saida += pess.getEmail()+"\n"; 
+                    }else{
+                        saida = "Registro nao foi localizado";
+                    }
+                    JOptionPane.showMessageDialog(null, new JTextArea(saida));
+                    break;
+                case 4:
+                    metodoExcluir();
+                    break;
+                case 5:
+                    Pessoa p = new Pessoa("Tiririca", "fiorentina@email.com");
+                    p.setId(10);
+                    PessoaDAO daa = new PessoaDAO();
+                    System.out.println(daa.atualizar(p));
+
+                    break;
+                case 6:
                     System.out.println("Saindo");
                     break;
                 default:
                     System.out.println("Opcao invalida");
             }
-        }while(op!=3);
-        
-    //     List<Pessoa> listaPessoas = pessoaDAO.consultarTodos();
-    //     System.out.println(listaPessoas.isEmpty());
-    //     System.out.println(listaPessoas);
-    //     for (Pessoa p : listaPessoas) {
-    //         System.out.println("--------");
-    //         System.out.println("id: " + p.getId());
-    //         System.out.println("nome: " + p.getNome());
-    //         System.out.println("email: " + p.getEmail());
-    //     }       
+        }while(op!=6);
     }
 }
