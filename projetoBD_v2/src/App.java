@@ -63,7 +63,26 @@ public class App {
             JOptionPane.showMessageDialog(null, "Registro " +id + " nao existe");
         }
     }
-    
+    public static Pessoa metodoConsultarId() {
+        String idStr = leString("Digite id");
+        // converter de String para int
+        int id = Integer.parseInt(idStr);
+        PessoaDAO dao = new PessoaDAO();
+        Pessoa p = dao.consultar(id);
+        return p;       
+    }
+
+    public static void metodoAtualizar(Pessoa p) {
+        String nomeAntigo = p.getNome();
+        String emailAntigo = p.getEmail();
+        String novoNome = leString("Alterar nome: "+ nomeAntigo);
+        String novoEmail = leString("Alterar email: "+ emailAntigo);
+        p.setNome(novoNome);
+        p.setEmail(novoEmail);
+        PessoaDAO dao = new PessoaDAO();
+        dao.atualizar(p);
+    }
+
     public static void main(String[] args) {
         int op;
         do{
@@ -76,11 +95,12 @@ public class App {
                     metodoConsultarTodos();
                     break;
                 case 3:
-                    String idStr = leString("Digite id");
-                    // converter de String para int
-                    int id = Integer.parseInt(idStr);
-                    PessoaDAO dao = new PessoaDAO();
-                    Pessoa pess = dao.consultar(id);
+                    Pessoa pess=metodoConsultarId();
+                    // String idStr = leString("Digite id");
+                    // // converter de String para int
+                    // int id = Integer.parseInt(idStr);
+                    // PessoaDAO dao = new PessoaDAO();
+                    // Pessoa pess = dao.consultar(id);
                     String saida;
                     if (pess != null){
                         saida = "id\tnome\temail\n";
@@ -96,10 +116,12 @@ public class App {
                     metodoExcluir();
                     break;
                 case 5:
-                    Pessoa p = new Pessoa("Tiririca", "fiorentina@email.com");
-                    p.setId(10);
-                    PessoaDAO daa = new PessoaDAO();
-                    System.out.println(daa.atualizar(p));
+                    Pessoa p = metodoConsultarId();
+                    if (p !=null){
+                        metodoAtualizar(p);
+                    }else{
+                        System.out.println("registro nao encontrado");
+                    }                  
 
                     break;
                 case 6:
